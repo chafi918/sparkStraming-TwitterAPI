@@ -41,7 +41,7 @@ object MyApp {
     
     //get the most influencers of the stream based on the numbers of followers
     stream.filter(_.getUser.getFollowersCount >= 10000)
-      .map(status => (status.getUser.getScreenName, status.getUser.getFollowersCount)).reduceByKeyAndWindow(_ + _, Seconds(60))
+      .map(status => (status.getUser.getScreenName, status.getUser.getFollowersCount))
       .map { case (topic, count) => (count, topic) }
       .transform(_.sortByKey(false))
       .foreachRDD(_.take(20).foreach{ case (count, userName) => println("%s (%s followers)".format(userName, count)) })
