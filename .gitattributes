@@ -1,2 +1,2 @@
 * linguist-vendored
-*.scala linguist-vendored=true
+*.scala linguist-language=Scala
